@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function xier(arr) {
+            var interval = parseInt(arr.length / 2);  //分组间隔设置
+            while (interval > 0) {
+                for (var i = interval; i < arr.length; i++) {
+                    var n = i;
+                    while (arr[n] < arr[n - interval] && n > 0) {
+                        var temp = arr[n];
+                        arr[n] = arr[n - interval];
+                        arr[n - interval] = temp;
+                        n = n - interval;
+                    }
+                }
+                interval = parseInt(interval / 2);
+            }
+            return arr;
+        }
+
+        function maopao(arr) {
+            //性能一般
+            //冒泡排序,每一趟找出最大的,总共比较次数为arr.length-1次,每次的比较次数为arr.length-1次，依次递减
+            let len = arr.length;
+            for (let k = 0; k < len - 1; k++) {
+                for (let m = 0; m < len - k - 1; m++) {
+                    if (arr[m] > arr[m + 1]) {
+                        let val = arr[m];
+                        arr[m] = arr[m + 1];
+                        arr[m + 1] = val;
+                    }
+                }
+            }
+
+            console.log(arr)
+
+        }
+        let arr = []
+        for (let i = 0; i <= 50000; i++) {
+            arr.push(Math.random())
+        }
+
+        function sheller(arr){
+            var len = arr.length
+            for(var gap = Math.floor(len/2);gap>0;gap = Math.floor(gap/2)){
+                for(var i = gap ; i < len ; i++){
+                    var j = i
+                    var current = arr[i]
+                    while(j - gap >= 0 && current < arr[j-gap]){
+                        arr[j] = arr[j - gap]
+                        j-=gap
+                    }
+                    arr[j] = current
+                }
+            }
+            return arr;
+        }
+        // console.log(xier(arr));
+        // console.log(sheller(arr));
+        console.log(xier(arr)==sheller(arr));
+        // console.log(maopao(arr));
+        console.log(arr instanceof Object);
+    </script>
+</body>
+
+</html>
