@@ -1,0 +1,1 @@
+"E:\wxSmallProcedure\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-4gvukrdi5a13b0e0 --n quickstartFunctions --r --project "E:\school\小程序开发\accountBookChapter8" --report_first --report
