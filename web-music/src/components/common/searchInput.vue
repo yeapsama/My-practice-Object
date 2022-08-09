@@ -26,7 +26,7 @@
               :key="index"
               @mouseover="showClear(index)"
               @mouseleave="clearIcon = false"
-              @click="toHotWord()"
+              @click="toHotWord(item)"
             >
               <span class="icon"></span>
               <span class="txt">{{ item }}</span>
@@ -107,6 +107,7 @@ export default {
           center: true,
         });
       } else {
+        this.$router.push("/searchdetail/"+this.searchWord).catch(err=> console.log(err))
         this.$refs.popover.doClose(); //关闭弹框
         this.addHistory(this.searchWord);
         this.searchWord = "";
@@ -128,7 +129,8 @@ export default {
     toHotWord(word) {
       this.$refs.popover.doClose(); //关闭弹框
 			this.searchWord = word;
-			// this.$router.push("/searchdetail/" + this.searchWord).catch(err => err);
+      // console.log(this.searchWord);
+			this.$router.push("/searchdetail/" + this.searchWord).catch(err => err);
 			this.addHistory(word);
     },
     //删除选中的历史记录的方法

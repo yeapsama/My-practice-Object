@@ -67,7 +67,7 @@ export default {
 		*/ 
       this.progressBoxWidth = this.$refs.progressBox.getBoundingClientRect().width; //进度条总宽度
 		  this.progressBoxLeft = this.$refs.progressBox.getBoundingClientRect().left; //进度条距左边距离
-		  this.setProgressBar(this.percent);
+		  this.setProgressBar(this.progress);
 		  this.setHoverBar();
     },
     methods:{
@@ -76,7 +76,7 @@ export default {
         this.$refs.progressBar.style.width = len + "%"
         this.$refs.radiusBtn.style.left = len + "%"
       },
-      //设置已播放的进度条的长度及其动效
+      //设置小圆点出现和消失的动效
       setHoverBar(){
       this.$refs.hoverBar.style.opacity = "0";
 			this.$refs.hoverBar.style.transition = "all 1s ease-out";
@@ -85,7 +85,7 @@ export default {
 				this.$refs.hoverBar.style.transition = "none";
 				this.$refs.hoverBar.style.width = 0;
 				this.$refs.hoverBar.style.opacity = "1";
-			}, 1000);
+			}, 500);
       },
       //获取鼠标在进度条上的位置并返回一个百分比
       getMousePosition(e){

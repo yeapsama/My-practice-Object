@@ -41,7 +41,7 @@ export default {
         RecommendMusic,
         newMV,
         NewSong,
-        Privatecontent
+        Privatecontent,
     },
     created(){
       getBanner().then(res =>{

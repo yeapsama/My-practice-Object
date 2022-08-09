@@ -5,11 +5,31 @@
             <span class="iconfont" :class="item.icon"></span>
 			<span>{{ item.name }}</span>
         </el-menu-item>
+
+		<!-- 登录后的 -->
+			<div class="mycreat" v-if="userSongList.length >= 1">
+				<p class="by">我创建的歌单</p>
+				<el-menu-item v-for="item in createdSongList" :key="item.id" :index="'/songlistdetail/' + item.id">
+					<span class="iconfont icon-xihuan"></span>
+					<span>{{ item.name }}</span>
+				</el-menu-item>
+			</div>
+			<div class="collect" v-if="userSongList.length > 1">
+				<p class="by">我收藏的歌单</p>
+				<div class="person">
+					<el-menu-item v-for="item in collectSongList" :key="item.id" :index="'/songlistdetail/' + item.id">
+						<span class="iconfont icon-gedan"></span>
+						<span>{{ item.name }}</span>
+					</el-menu-item>
+				</div>
+			</div>
       </el-menu>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name:'Aside',
     data() {
@@ -24,6 +44,41 @@ export default {
 			collectIndex: null,
         }
     },
+	computed: {
+		...mapGetters("login",["userSongList", "userInfo"]),
+		createdSongList() {
+			// 找到用户收藏的第一个歌单的索引号
+			this.collectIndex = this.userSongList.findIndex(item => item.creator.userId != this.userInfo.userId);
+			// 截取用户创建的歌单
+			if (this.collectIndex !== -1) {
+				return this.userSongList.slice(0, this.collectIndex);
+			} else {
+				return this.userSongList;
+			}
+		},
+		collectSongList() {
+			if (this.collectIndex !== -1) {
+				return this.userSongList.slice(this.collectIndex);
+			} else {
+				return [];
+			}
+		},
+	},
+	methods: {
+		getPath() {
+			let pathArr = "/" + this.$route.path.split("/")[1];
+			console.log(pathArr);
+			if (pathArr == "/songlistdetail") {
+				this.defaultActive = pathArr + "/" + this.$route.params.id;
+			} else {
+				this.defaultActive = pathArr;
+			}
+		},
+	},
+	watch: {
+		//watch监听路由变化,当路由变化时候调用getPath
+		$route: "getPath",
+	},
 }
 </script>
 

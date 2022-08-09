@@ -9,6 +9,8 @@
 					<router-view v-if="isRouterAlive"></router-view>
 				</keep-alive>
 			</transition>
+			<!-- 返回顶部 -->
+			<el-backtop target=".view" :right="10" :bottom="75" id="backtop"></el-backtop>
     </div>
 	<!-- 浮动歌词 -->
 		<transition name="el-fade-in-linear">
@@ -29,6 +31,20 @@ export default {
         isRouterAlive:true
       }
     },
+	provide(){
+		return{
+			reload:this.reload
+		}
+	},
+	methods:{
+		//用于页面局部刷新，在需要局部刷新的页面进行引用
+		reload(){
+			this.isRouterAlive = false
+			this.$nextTick(function(){
+				this.isRouterAlive = true
+			})
+		}
+	},
     components:{
         Aside,
 		FloatLynic

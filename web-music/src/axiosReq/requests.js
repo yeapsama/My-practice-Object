@@ -11,10 +11,7 @@ export function request(url){
     // 请求拦截
     axiosData.interceptors.request.use(
         config => {
-            //如果不是二维码登录的页面就在请求时候进行loading显示
-            // if(config.url != 'login/qr/check'){
-            //     startLoading()
-            // }
+            //登陆时候用
             startLoading()
             return config
         },

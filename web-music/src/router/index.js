@@ -51,6 +51,56 @@ const routes = [
         ]
         
     },
+    /* 歌单详情 */
+	{
+		path: "/songlistdetail/:id",
+		name: "Songlistdetail",
+		component: ()=>import('../view/SongListDetaill/SongListDetail.vue'),
+	},
+    //搜索详情
+    {
+        path:"/searchdetail/:keywords",
+        component:()=>import("../view/searchDetail/searchDetail.vue"),
+        redirect:"/searchdetail/songres/:keywords",
+        children:[
+            //单曲
+            {
+                path:"/searchdetail/songres/:keywords",
+                name:"SongRes",
+                component:()=>import('../view/searchDetail/child/SongRes.vue')
+            },
+            //专辑
+            {
+                path:"/searchdetail/albumres/:keywords",
+                name:"AlbumRes",
+                component:()=>import('../view/searchDetail/child/AlbumRes.vue')
+            },
+            //歌手
+            {
+                path:"/searchdetail/singerres/:keywords",
+                name:"SingerRes",
+                component:()=>import('../view/searchDetail/child/SingerRes.vue')
+            },
+            //歌单
+            {
+                path:"/searchdetail/songlistres/:keywords",
+                name:"SongListRes",
+                component:()=>import('../view/searchDetail/child/SongListRes.vue')
+            },
+            //MV
+            {
+                path:"/searchdetail/mvres/:keywords",
+                name:"MvRes",
+                component:()=>import('../view/searchDetail/child/MvRes.vue')
+            },
+            //视频
+            {
+                path:"/searchdetail/videores/:keywords",
+                name:"VideoRes",
+                component:()=>import('../view/searchDetail/child/VideoRes.vue')
+            },
+        ]
+    },
     //推荐视频
     {
         path:'/recvideo',
@@ -67,7 +117,13 @@ const routes = [
         path:'/myfavorite',
         component:()=>import('../view/myFavorite/myFavorite.vue'),
         name:'myFavorite'
-    }
+    },
+    /* 用户详情 */
+	{
+		path: "/userdetail/:uid",
+		name: "UserDetail",
+		component: ()=>import('../view/userdetail/UserDetail.vue'),
+	},
 ]
 
 const router = new VueRouter({

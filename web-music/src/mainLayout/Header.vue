@@ -15,12 +15,14 @@
       <searchInput/>
     </div>
     <!-- 登录 -->
-    <div class="login"></div>
+    <div class="login">
+      <Login />
+    </div>
     <!-- 皮肤 -->
     <div class="theme">
         <!-- trigger属性用于设置何时触发 Popover，支持四种触发方式：hover，click，focus 和 manual。
         对于触发 Popover 的元素，有两种写法：使用 slot="reference" 的具名插槽，或使用自定义指令v-popover指向 Popover 的索引ref -->
-      <span class="iconfont icon-pifu" v-popover:theme slot="reference"></span>
+      <span class="iconfont icon-pifu" v-popover:theme></span>
       <el-popover ref="theme" placement="bottom" width="150" trigger="click">
         <theme-picker></theme-picker>
       </el-popover>
@@ -48,6 +50,7 @@ import searchInput from '../components/common/searchInput.vue'
 import themePicker from '@/components/common/themePicker'
 import {requestFullScreen,exitFullscreen,isFullscreen} from '../utils/utils'
 import ThemePicker from '../components/common/themePicker.vue';
+import Login from '@/components/content/login/Login'
 export default {
   name: "Header",
   data() {
@@ -58,7 +61,8 @@ export default {
   components:{
       searchInput,
       themePicker,
-    ThemePicker
+      ThemePicker,
+      Login
   },
   mounted() {
     // onreset当浏览器被重置大小时执行Javascript代码

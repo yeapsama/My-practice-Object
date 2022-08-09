@@ -62,7 +62,6 @@ export default {
 		currentSecond() {
 			this.currentLyric.forEach((item, index) => {
 				if (Math.ceil(this.currentSecond) >= item.time) {
-					this.$refs.floatLyric.style.top = -index * 40 + "px";
 					this.currentRow = index; //用于判断当前歌词高亮显示
 				}
 			});

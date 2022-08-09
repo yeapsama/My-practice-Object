@@ -195,7 +195,7 @@ export default {
       },
       // 监听时间的改变
 		  onTimeupdate(res) {
-			// 提交歌曲播放的实时秒数 用于歌词的实时滚动
+			// 提交歌曲播放的实时秒数
 			this.$store.dispatch("saveCurrentSeconds", res.target.currentTime);
 			// 格式化为分钟
 			this.currentTime = formatDuration(res.target.currentTime);

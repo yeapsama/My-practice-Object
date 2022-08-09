@@ -1,5 +1,5 @@
 <template>
-  <div class="song-list-item"  v-if="Object.keys(songList).length !== 0" @click="listItemClick">
+  <div class="song-list-item"  v-if="Object.keys(songList).length !== 0" @click="listItemClick(songList.id)">
       <div class="imgitem" @mouseleave="hideMask" @mouseenter="showMask">
           <!-- 图片上的播放图标 鼠标经过时显示 -->
           <transition name="el-fade-in-linear">
@@ -55,8 +55,10 @@ export default {
     },
     methods:{
         // 点击每一项时候的方法
-        listItemClick(){
-            console.log(111);
+        listItemClick(id){
+            this.$router.push("/songListdetail/" + id);
+			this.isShowIcon = true;
+			this.isShowDetail = false;
         },
         showMask(){
            this.isShowIcon = false;

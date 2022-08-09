@@ -13,6 +13,10 @@ const actions = {
 	addPlayinglist({ commit }, payload) {
 		commit("ADDPLAYINGLIST", payload);
 	},
+    //播放全部
+    addAllSong({commit},payload){
+        commit("ADDALLSONG",payload)
+    },
     //改变播放状态，true为播放，false为暂停
     changePlayState({commit},isplay){
         commit("CHANGEPLAYSTATE",isplay)
@@ -77,6 +81,11 @@ const mutations = {
 			state.playingList.unshift(songData);
 			localStorage.setItem("playingList", JSON.stringify(state.playingList));
 		}
+    },
+    //播放全部
+    ADDALLSONG(state,payload){
+        state.playingList = payload
+        localStorage.setItem("playingList",JSON.stringify(state.playingList))
     },
     CHANGEPLAYSTATE(state,isplay){
         state.isPlaying = isplay

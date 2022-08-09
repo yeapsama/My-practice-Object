@@ -248,7 +248,7 @@ export default {
   bottom: 70px;
   right: 0;
   // 相当于100%相对视口（全屏）-Header和Footer的高度
-  height: calc(100vh-130px);
+  height: calc(100vh - 130px);
   background-color: #fff;
   border-left: 1px solid #ebebeb;
   box-shadow: -3px 0px 5px 0px #eee;
